@@ -2,7 +2,7 @@ version: '3'
 
 services:
     magicladder:
-        image:
+        image: xecades/ladder
         restart: always
         ports:
             - '8081:8081'

@@ -10,13 +10,12 @@
                 "clients": [
                     {
                         "id": "%%UUID%%",
-                        "alterId": 64
+                        "alterId": 0
                     }
                 ]
             },
             "streamSettings": {
-                "network": "http",
-                "security": "none"
+                "network": "ws",
             }
         }
     ],
