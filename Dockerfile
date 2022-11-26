@@ -9,11 +9,11 @@ RUN apk add --no-cache --virtual .build-deps git \
 
 FROM alpine:latest
 
-COPY --from=0 /v2ray-core/v2ray /usr/bin/v2ray
+COPY --from=0 /go/v2ray-core/v2ray /usr/bin/v2ray
 COPY ./config.json.template /etc/v2ray/config.json.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
-RUN apk add --no-cache uuidgen \
+RUN apk add --no-cache uuidgen tzdata openssl ca-certificates \
     && wget -qO /usr/local/share/v2ray/geoip.dat https://github.com/v2fly/geoip/raw/release/geoip.dat \
     && wget -qO /usr/local/share/v2ray/geosite.dat https://github.com/v2fly/domain-list-community/raw/release/dlc.dat
 
