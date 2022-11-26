@@ -1,4 +1,4 @@
-FROM goland:alpine
+FROM golang:alpine
 
 RUN apk add --no-cache --virtual .build-deps git \
     && git clone https://github.com/v2fly/v2ray-core.git \
