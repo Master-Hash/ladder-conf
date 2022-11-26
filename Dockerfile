@@ -18,5 +18,5 @@ RUN apk add --no-cache uuidgen tzdata openssl ca-certificates \
     && wget -qO /usr/local/share/v2ray/geoip.dat https://github.com/v2fly/geoip/raw/release/geoip.dat \
     && wget -qO /usr/local/share/v2ray/geosite.dat https://github.com/v2fly/domain-list-community/raw/release/dlc.dat
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
 CMD ["v2ray", "-c", "/etc/v2ray/config.json"]
