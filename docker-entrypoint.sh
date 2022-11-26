@@ -2,7 +2,7 @@
 
 set -e
 
-export UUID=${UUID:-$(uuidgen)}
+export UUID=${UUID:-$(v2ray uuid)}
 echo "UUID: ${UUID}"
 
 cp /etc/v2ray/config.json.template /etc/v2ray/config.json

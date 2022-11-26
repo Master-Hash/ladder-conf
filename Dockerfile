@@ -13,7 +13,7 @@ COPY --from=0 /go/v2ray-core/v2ray /usr/bin/v2ray
 COPY ./config.json.template /etc/v2ray/config.json.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
-RUN apk add --no-cache uuidgen tzdata openssl ca-certificates \
+RUN apk add --no-cache tzdata openssl ca-certificates \
     && mkdir /usr/local/share/v2ray \
     && wget -qO /usr/local/share/v2ray/geoip.dat https://github.com/v2fly/geoip/raw/release/geoip.dat \
     && wget -qO /usr/local/share/v2ray/geosite.dat https://github.com/v2fly/domain-list-community/raw/release/dlc.dat
