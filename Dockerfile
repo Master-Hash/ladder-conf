@@ -1,0 +1,21 @@
+FROM goland:alpine
+
+RUN apk add --no-cache --virtual .build-deps git \
+    && git clone https://github.com/v2fly/v2ray-core.git \
+    && cd v2ray-core \
+    # Compile Guild
+    # https://www.v2fly.org/developer/intro/compile.html
+    && CGO_ENABLED=0 go build -o ./v2ray -trimpath -ldflags "-s -w -buildid=" ./main
+
+FROM alpine:latest
+
+COPY --from=0 /v2ray-core/v2ray /usr/bin/v2ray
+COPY ./config.json.template /etc/v2ray/config.json.template
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+
+RUN apk add --no-cache uuidgen \
+    && wget -qO /usr/local/share/v2ray/geoip.dat https://github.com/v2fly/geoip/raw/release/geoip.dat \
+    && wget -qO /usr/local/share/v2ray/geosite.dat https://github.com/v2fly/domain-list-community/raw/release/dlc.dat
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["v2ray", "-c", "/etc/v2ray/config.json"]

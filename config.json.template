@@ -1,0 +1,28 @@
+{
+    "log": {
+        "loglevel": "info"
+    },
+    "inbounds": [
+        {
+            "port": 8081,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "%%UUID%%",
+                        "alterId": 64
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "http",
+                "security": "none"
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom"
+        }
+    ]
+}
