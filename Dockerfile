@@ -19,4 +19,4 @@ RUN apk add --no-cache tzdata openssl ca-certificates \
     && wget -qO /usr/local/share/v2ray/geosite.dat https://github.com/v2fly/domain-list-community/raw/release/dlc.dat
 
 ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
-CMD ["v2ray", "-c", "/etc/v2ray/config.json"]
+CMD ["v2ray", "run", "-c", "/etc/v2ray/config.json"]
