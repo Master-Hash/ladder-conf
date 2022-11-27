@@ -15,7 +15,8 @@
                 ]
             },
             "streamSettings": {
-                "network": "ws"
+                "network": "%%NETWORK%%"
+                %%EXTRA_SETUP%%
             }
         }
     ],

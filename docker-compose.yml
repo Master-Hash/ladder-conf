@@ -8,3 +8,4 @@ services:
             - '8081:8081'
         environment:
             - UUID=ab01e7f4-6796-4cf7-ba62-887697f1a6ab
+            - NETWORK=grpc
