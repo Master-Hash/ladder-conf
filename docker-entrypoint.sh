@@ -7,9 +7,13 @@ export NETWORK=${NETWORK:-ws}
 echo "UUID: ${UUID}"
 echo "NETWORK: ${NETWORK}"
 
-cp /etc/v2ray/config.json.template /etc/v2ray/config.json
-sed -i "s/%%UUID%%/${UUID}/g" /etc/v2ray/config.json
-sed -i "s/%%NETWORK%%/${NETWORK}/g" /etc/v2ray/config.json
+if [ -f /etc/v2ray/config.json ]; then
+    echo "config.json already exists."
+else
+    cp /etc/v2ray/config.json.template /etc/v2ray/config.json
+    sed -i "s/%%UUID%%/${UUID}/g" /etc/v2ray/config.json
+    sed -i "s/%%NETWORK%%/${NETWORK}/g" /etc/v2ray/config.json
+fi
 
 if [[ ${NETWORK} == "grpc" ]]; then
     sed -i "s/%%EXTRA_SETUP%%/,\"grpcSettings\": {\"serviceName\": \"v2ray\"}/g" /etc/v2ray/config.json
