@@ -1,17 +1,21 @@
 {
     "log": {
-        "loglevel": "info"
+        "access": {
+            "type": "Console",
+            "level": "Info"
+        },
+        "error": {
+            "type": "Console",
+            "level": "Info"
+        }
     },
     "inbounds": [
         {
             "port": 8081,
             "protocol": "vmess",
             "settings": {
-                "clients": [
-                    {
-                        "id": "%%UUID%%",
-                        "alterId": 0
-                    }
+                "users": [
+                    "%%UUID%%"
                 ]
             },
             "streamSettings": {
