@@ -10,7 +10,7 @@ RUN apk add --no-cache --virtual .build-deps git \
 FROM alpine:latest
 
 COPY --from=0 /go/v2ray-core/v2ray /usr/local/bin/v2ray
-COPY ./config.json.template /etc/v2ray/config.json.template
+COPY ./config.json /etc/v2ray/config.json
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN apk add --no-cache tzdata openssl ca-certificates \
@@ -18,6 +18,6 @@ RUN apk add --no-cache tzdata openssl ca-certificates \
     && wget -qO /usr/local/share/v2ray/geoip.dat https://github.com/v2fly/geoip/raw/release/geoip.dat \
     && wget -qO /usr/local/share/v2ray/geosite.dat https://github.com/v2fly/domain-list-community/raw/release/dlc.dat
 
-ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
+# ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
 EXPOSE 8081
 CMD ["v2ray", "run", "-c", "/etc/v2ray/config.json", "-format", "jsonv5"]
